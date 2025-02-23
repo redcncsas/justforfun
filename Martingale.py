@@ -5,23 +5,23 @@ n_boxes = 36#numero de casilas
 
 RED = np.arange(start=1, stop=n_boxes + 1, step=2, dtype=int)#rojas, apuesta!!!
 black = np.arange(start=2, stop=n_boxes + 1, step=2, dtype=int)#negras
-zero = np.array([0])
+zero = np.array([0])#cero
 
-budget = 1000#presupuesto
+budget = 1000#presupuesto/apuesta maxima permitida
 start_bet = 1#apuesta inicial
 lose_increment = 2.0#coeficiente de incremento de apuesta si pierdo
 win_increment = 2.0#coeficiewnte de ganancia si gano
 waiting_time = 30#tiempo de espera
-max_consecutive_lose = 16#maximo de perdidas consecutiva
+max_consecutive_lose = 16#maximo de perdidas consecutivas
 
 all_boxes = np.arange(start=0, stop=n_boxes + 1, step=1, dtype=int)#todas las casillas
 consecutive_lose = np.zeros(max_consecutive_lose, dtype=int)#registro de numero de perdidas maximas consecutivas
 balance = budget#balance (variable)
 current_bet = start_bet#apuesta en curso (variable)
-elapsed_time = 0#tiempo de juego
-count_lose = 0
+elapsed_time = 0#tiempo de juego (variable)
+count_lose = 0#conteo de apuestas consecutivas (variable)
 
-while balance >= 0 and count_lose < max_consecutive_lose:
+while balance >= 0 and count_lose < max_consecutive_lose:#Mientras tenga balance/no supere la apuesta maxima permitida o no supere el maximo consecutivo de apuestas perdidas
  balance -= current_bet#deducimos la apuesta en curso
  result = random.randint(0,n_boxes)#resultado
 
